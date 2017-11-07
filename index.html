@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Local Weather App</title>
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="loading">Looking at the sky...</div>
+<div id="container">
+    <div id="location">Piškurevci</div>
+    <div id="temperature">20</div>
+    <div id="but"><div id="button">Celsius / Fahrenheit</div></div>
+    <div id="weather">Bljuzgavo</div>
+    <div><img id="icon" src="#"></div>
+</div>
+
+<script>
+var endpoint = 'https://fcc-weather-api.glitch.me/api/current?lon=';
+var cf = 1;
+$(document).ready(function(){
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+        endpoint += position.coords.longitude + '&lat=' + position.coords.latitude;
+        getWeather(endpoint);
+    		});
+		};
+});
+function getWeather(endpoint) {
+	setTimeout( function() {
+		$.ajax({
+    	url: endpoint, success: function (result) {
+    	
+      	$("#location").text(result.name + ', '+ result.sys.country);
+      	$("#weather").text(result.weather[0].main);
+      	$("#temperature").text(Math.round(result.main.temp) + String.fromCharCode(176) + ' C');
+      	$('body').css("background", "black");
+
+      	$("#container").css("visibility", "visible");
+      	var weath = result.weather[0].main.toLowerCase();
+      	var back;
+      	var icon;
+      	switch(weath) {
+      		case 'drizzle':
+      		case 'rain':
+      			back = "url('https://s-media-cache-ak0.pinimg.com/originals/dd/7a/93/dd7a93f2bc5d139a901958736313f18d.jpg')";
+      			icon = "https://image.flaticon.com/icons/svg/414/414974.svg";
+      			break;
+      		case 'clouds':
+      			back = "url('https://s-media-cache-ak0.pinimg.com/originals/37/a5/10/37a510bab7c9509295217106da447832.jpg')";
+      			icon = "https://image.flaticon.com/icons/svg/148/148828.svg";
+      			break;
+      		case 'clear':
+      	   	 back = "url('https://s-media-cache-ak0.pinimg.com/originals/96/14/93/9614939a6a1da0be11d1c4bcab47f1c8.jpg')";
+      	    	icon = "https://image.flaticon.com/icons/svg/136/136723.svg";
+      			break;
+      		case 'snow':
+      		 	back = "url('http://images.all-free-download.com/images/graphiclarge/winter_snow_backgrounds_art_vector_522028.jpg')";
+      		 	icon = "https://image.flaticon.com/icons/svg/290/290408.svg";
+      			break;
+      		case 'thunderstorm':
+      	    	back = "url('https://s-media-cache-ak0.pinimg.com/736x/0a/64/ba/0a64bad93667d0bcbd8502f8044db7bc--lightning-storms-lightning-strikes.jpg')";
+      	    	icon = "https://image.flaticon.com/icons/svg/291/291217.svg";
+      			break;
+
+      }
+      $("#container").css("background", back);
+      $("#icon").attr("src", icon);
+      $('#loading').css("visibility", "hidden");
+    }
+  });
+}, 800);} 
+$('#button').click(function () {
+cf = -cf;
+if(cf<0){
+	$("#temperature").text(Math.round(parseInt($("#temperature").text()) * 9 / 5 + 32) + ' F');
+} else {
+	$("#temperature").text(Math.round((parseInt($("#temperature").text())-32) * 5 / 9 ) + String.fromCharCode(176) +' C');
+
+}   
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+body {
+	
+	background: url('https://image.freepik.com/free-photo/woman-looking-through-binoculars_1187-1049.jpg') no-repeat; 
+	background-size: 100%; 
+	font-size: 2rem;
+	color: white;
+	font-family: raleway;
+	font-weight: 600;
+	text-shadow: 0px 0px 20px rgb(0,0,0);
+}
+#loading {
+	position: absolute;
+	margin-left: 50%;
+	font-size: 3.5rem;
+	visibility: visible;
+}
+#container {
+	border: 5px solid white;
+	border-radius: 20px;
+	width:30%;
+	margin: 50px 0 0 35%;
+	text-align: center;
+    background: url('https://userscontent2.emaze.com/images/2b0f5269-3c7e-40dd-a970-e5e2ff50aac8/a117b733f16fc9b45ce0c12050548cd4.jpg') no-repeat;
+    background-size: 100%;
+    box-shadow: 0px 0px 5rem rgba(255,255,255,0.4);
+    visibility: hidden;
+    z-index: 2;
+}
+#back {
+	height:100%;
+	min-width: 100%;
+	position: relative;
+
+}
+#location,#temperature,#weather,#icon,button {
+	margin-top: 30px;
+}
+#temperature {
+	font-size: 4rem;
+}
+#icon {
+	width: 30%;
+	margin-bottom: 50px;
+}
+#but {
+	justify-content: center;
+}
+#button {
+	font-size: 1rem;
+	background-color: rgba(0,0,0,0)
+	border: 3px solid white;
+	border-radius: 12px;
+	box-shadow: 0px 0px 8px rgb(0,0,0);
+	margin: 15px 20%;
+}
+#button:hover {
+	cursor: pointer;
+}
+@media (max-width: 1080px) {
+  #container {
+    width: 44%;
+    margin-left: 28%;
+  }
+}
