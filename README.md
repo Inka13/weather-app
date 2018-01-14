@@ -3,7 +3,7 @@
 https://inka13.github.io/weather-app/
 <h3>freeCodeCamp front end challenge</h3>
 
-<h4>Used tehnologies: HTML, CSS, Javascript, HTML5 Geolocation, freeCodeCamp Weather API
+<h4>Used tehnologies: HTML, CSS, Javascript, HTML5 Geolocation, freeCodeCamp Weather API</h4>
 
 <p>User Stories:</p> 
 
